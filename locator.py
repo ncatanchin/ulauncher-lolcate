@@ -36,5 +36,5 @@ class Locator:
                 cmd.append(self.opt)
                 cmd.extend(args)
             print('----->'+str(cmd))
-            output = subprocess.check_output(cmd)
+            output = subprocess.check_output(cmd, encoding='utf-8')
             return output.splitlines()

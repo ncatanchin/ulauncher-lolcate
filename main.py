@@ -11,6 +11,8 @@ from ulauncher.api.shared.event import PreferencesUpdateEvent
 from ulauncher.api.shared.event import ItemEnterEvent
 from ulauncher.api.shared.action.ExtensionCustomAction import ExtensionCustomAction
 from locator import Locator
+from html import escape
+from pathlib import Path
 
 
 locator = Locator()
@@ -80,7 +82,16 @@ class KeywordQueryEventListener(EventListener):
                                                       query_str)
                                                   ))
         return items
-                
+
+    def get_display_path(self, path):
+        """Strip /home/user from path if appropriate."""
+        path = Path(path)
+        home = Path.home()
+        if home in path.parents:
+            return '~/' + str(path.relative_to(home))
+        else:
+            return str(path)
+
     def on_event(self, event, extension):
         arg = event.get_argument()
         items = []
@@ -93,15 +104,15 @@ class KeywordQueryEventListener(EventListener):
                 alt_action = ExtensionCustomAction(results, True)
                 for file in results:
                     items.append(ExtensionSmallResultItem(icon='images/ok.png',
-                        name = file, 
+                        name = escape(self.get_display_path(file)),
                         on_enter = OpenAction(file),
                         on_alt_enter = alt_action))
-            except Exception, e:
+            except Exception as e:
                 error_info = str(e)
                 items = [ExtensionSmallResultItem(icon='images/error.png',
                                                 name = error_info,
                                                 on_enter = CopyToClipboardAction(error_info))]
-        
+
         return RenderResultListAction(items)
 
 
