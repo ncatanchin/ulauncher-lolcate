@@ -4,37 +4,42 @@ import logging
 import sys
 
 class Locator:
-    def __init__(self):
-        self.cmd = 'locate' if self.__check_has_locate() else None
-        self.limit = 5
-        self.opt = ''
+	def __init__(self, logger : logging.Logger):
+		self.logger = logger
+		self.cmd = 'lolcate' if self.has_lolcate() else None
+		# self.limit = 5
+		self.opt = ''
 
-    def set_limit(self, limit):
-        print('set limit to '+str(limit))
-        self.limit = limit
+	# def set_limit(self, limit : int) -> None:
+	# 	self.logger.debug('set limit to '+str(limit))
+	# 	self.limit = limit
 
-    def set_locate_opt(self, opt):
-        print('set locate opt to '+opt)
-        self.opt = opt
+	# def set_locate_opt(self, opt):
+	# 	print('set locate opt to '+opt)
+	# 	self.opt = opt
 
-    def __check_has_locate(self):
-        try:
-            subprocess.check_call(['which', 'locate'])
-            return True
-        except:
-            return False
+	def has_lolcate(self) -> bool:
+		try:
+			subprocess.check_call(['which', 'lolcate'])
+			return True
+		except:
+			return False
 
-    def run(self, pattern):
-        if self.cmd == None:
-            raise RuntimeError('command locate not found or options config error')
-        else:
-            cmd = [self.cmd, '-l', str(self.limit)]
-            args = pattern.split(' ')
-            if args[0] == 'r':
-                cmd.extend(args[1:])
-            else:
-                cmd.append(self.opt)
-                cmd.extend(args)
-            print('----->'+str(cmd))
-            output = subprocess.check_output(cmd)
-            return output.splitlines()
+	def run(self, pattern) -> list[str]:
+		if self.cmd == None:
+			raise RuntimeError('command lolcate not found or options config error')
+		else:
+			cmd = [self.cmd]
+			args = pattern.split(' ')
+			# if args[0] == 'r':
+			# 	cmd.extend(args[1:])
+			# else:
+			# 	cmd.append(self.opt)
+			cmd.extend(args)
+			self.logger.debug(f"executing {cmd}")
+			output = subprocess.check_output(cmd)
+			split = output.splitlines()
+			# self.logger.debug(f"{split}")
+			count = len(split)
+			self.logger.debug(f"found {count} matches")
+			return split

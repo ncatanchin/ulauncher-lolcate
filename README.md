@@ -1,31 +1,24 @@
-**Note**
-
-This repository will not be maintain anymore!
-
-Instead of wasting time waiting searching command to complete, I chose organising my files orderly. Another good practise may be using your powerfull 'Recent files'.
-
-For files that only used few times, 'find' command would be good. And for me, terminal + locate would work too.
-
-**Old ReadMe**
+# Lolcate wrapper for Ulauncher
 
 Extension for [ulauncher](https://ulauncher.io/) to visit your files anytime, anywhere.
 
-![help](images/0.png)
+This is "fork" of [ulauncher-searchfile extension](https://github.com/compilelife/ulauncher-searchfile) which is not maintained anymore.
 
-The *searchfile* extension use command `locate` to locate file.
+## Dependencies
 
-Currently it has two modes.
+### lolcate
+- [`lolcate`](https://github.com/ngirard/lolcate-rs) is alternative to `locate`. (Note that it's lo**l**cate not locate)
+- fast, configurable indexing tool
+- lolcate configuration is topic for official documentation, please [head there](https://github.com/ngirard/lolcate-rs#guide) if you need help with config
 
-1. Search by basename, equivalent to `locate -b`
+## Usage 
 
-![basename search](images/1.png)
+All aguments are passed to `lolcate`, which accepts plain text, but also regexes.
 
-2. Raw mode, which pass all argument directly into `locate`. The flowing screenshot demonstrates how to use regex to match files with subfix `png` in `searchfile` direcory(first <u>r</u> is use to trigger <u>r</u>aw mode):
-
-![regex search](images/2.png)
-
-Press Alt+Number to open files using `xdg-open`.
+Press Alt+Number/Enter to open files using `xdg-open`.
 
 Alternative, you can press Alt-Enter to switch to copy-to-clipboard menu.
 
-![copy-to-clipboard menu](images/3.png)
+### Limitations
+- Only default database is used
+- No way to reach results which did not fit into result list (depends on limit settings)

@@ -1,12 +1,12 @@
 {
     "manifest_version": "2",
-    "api_version": "1",
+    "required_api_version": "^2.0.0",
     "name": "search files",
-    "description": "search files using locate",
-    "developer_name": "compilelife",
+    "description": "search files using lolcate",
+    "developer_name": "xorly, compilelife",
     "icon": "images/icon.png",
     "options": {
-      "query_debounce": 0.5
+      "query_debounce": 0.3
     },
     "preferences": [
       {
@@ -22,13 +22,6 @@
         "name": "maximum number of result",
         "description": "result will be truncate to the maximum number",
         "default_value": "8"
-      },
-      {
-        "id": "options",
-        "type": "input",
-        "name": "locate options",
-        "description": "locate options display on help menus, first one would be the default option;",
-        "default_value": "-iA;-r;-b"
       }
     ]
   }
