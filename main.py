@@ -12,6 +12,8 @@ from ulauncher.api.shared.event import PreferencesEvent
 from ulauncher.api.shared.event import PreferencesUpdateEvent
 from ulauncher.api.shared.event import ItemEnterEvent
 from locator import Locator
+from html import escape
+from pathlib import Path
 
 import logging
 
@@ -110,6 +112,51 @@ class KeywordQueryEventListener(EventListener):
 												on_enter = CopyToClipboardAction(error_info))]
 		
 		return RenderResultListAction(items)
+
+"""     def __help(self):
+        all_opt = opts.get_all()
+        items = []
+        for i in range(len(all_opt)):
+            hint_str='locate '+all_opt[i]
+            query_str='s r '+all_opt[i]+' '
+            items.append(ExtensionSmallResultItem(icon='images/info.png',
+                                                  name=hint_str,
+                                                  on_enter=SetUserQueryAction(
+                                                      query_str)
+                                                  ))
+        return items """
+
+    def get_display_path(self, path):
+        """Strip /home/user from path if appropriate."""
+        path = Path(path)
+        home = Path.home()
+        if home in path.parents:
+            return '~/' + str(path.relative_to(home))
+        else:
+            return str(path)
+
+"""     def on_event(self, event, extension):
+        arg = event.get_argument()
+        items = []
+
+        if arg is None:
+            items = self.__help()
+        else:
+            try:
+                results = locator.run(arg)
+                alt_action = ExtensionCustomAction(results, True)
+                for file in results:
+                    items.append(ExtensionSmallResultItem(icon='images/ok.png',
+                        name = escape(self.get_display_path(file)),
+                        on_enter = OpenAction(file),
+                        on_alt_enter = alt_action))
+            except Exception as e:
+                error_info = str(e)
+                items = [ExtensionSmallResultItem(icon='images/error.png',
+                                                name = error_info,
+                                                on_enter = CopyToClipboardAction(error_info))]
+
+        return RenderResultListAction(items) """
 
 
 if __name__ == '__main__':
