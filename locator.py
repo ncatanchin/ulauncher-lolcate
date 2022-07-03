@@ -29,15 +29,21 @@ class Locator:
 		if self.cmd == None:
 			raise RuntimeError('command lolcate not found or options config error')
 		else:
-			cmd = [self.cmd]
+            cmd = [self.cmd, '-l', str(self.limit)]
 			args = pattern.split(' ')
-			# if args[0] == 'r':
-			# 	cmd.extend(args[1:])
-			# else:
-			# 	cmd.append(self.opt)
+
+            # if args[0] == 'r':
+            #     cmd.extend(args[1:])
+            # else:
+            #     cmd.append(self.opt)
+            #     cmd.extend(args)
+
 			cmd.extend(args)
+
 			self.logger.debug(f"executing {cmd}")
-			output = subprocess.check_output(cmd)
+            print('----->'+str(cmd))
+
+            output = subprocess.check_output(cmd, encoding='utf-8')
 			split = output.splitlines()
 			# self.logger.debug(f"{split}")
 			count = len(split)
