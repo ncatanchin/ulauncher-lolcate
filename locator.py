@@ -29,7 +29,8 @@ class Locator:
         if self.cmd == None:
             raise RuntimeError('command lolcate not found or options config error')
         else:
-            cmd = [self.cmd, '-l', str(self.limit)]
+            # cmd = [self.cmd, '-l', str(self.limit)]
+            cmd = [self.cmd]
             args = pattern.split(' ')
 
             # if args[0] == 'r':
