@@ -113,7 +113,8 @@ class KeywordQueryEventListener(EventListener):
         
         return RenderResultListAction(items)
 
-"""     def __help(self):
+    """
+    def __help(self):
         all_opt = opts.get_all()
         items = []
         for i in range(len(all_opt)):
@@ -124,7 +125,8 @@ class KeywordQueryEventListener(EventListener):
                                                   on_enter=SetUserQueryAction(
                                                       query_str)
                                                   ))
-        return items """
+        return items
+    """
 
     def get_display_path(self, path):
         """Strip /home/user from path if appropriate."""
@@ -135,7 +137,7 @@ class KeywordQueryEventListener(EventListener):
         else:
             return str(path)
 
-"""     def on_event(self, event, extension):
+        """     def on_event(self, event, extension):
         arg = event.get_argument()
         items = []
 
@@ -156,8 +158,8 @@ class KeywordQueryEventListener(EventListener):
                                                 name = error_info,
                                                 on_enter = CopyToClipboardAction(error_info))]
 
-        return RenderResultListAction(items) """
-
+        return RenderResultListAction(items)
+        """
 
 if __name__ == '__main__':
     SearchFileExtension().run()
