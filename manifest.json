@@ -1,18 +1,18 @@
 {
     "manifest_version": "2",
-    "required_api_version": "^2.0.0",
-    "name": "search files",
-    "description": "search files using lolcate",
-    "developer_name": "xorly, compilelife",
+    "required_api_version": "3",
+    "name": "Ulauncher lolcate extension",
+    "description": "Search files using lolcate",
+    "developer_name": "xorly, compilelife, ncatanchin",
     "icon": "images/icon.png",
     "options": {
-      "query_debounce": 0.3
+      "query_debounce": 0.5
     },
     "preferences": [
       {
         "id": "keyword",
         "type": "keyword",
-        "name": "search files",
+        "name": "Ulauncher lolcate extension",
         "description": "keyword to activate this plugin",
         "default_value": "s"
       },
@@ -21,7 +21,7 @@
         "type": "input",
         "name": "maximum number of result",
         "description": "result will be truncate to the maximum number",
-        "default_value": "8"
+        "default_value": "16"
       }
     ]
   }
