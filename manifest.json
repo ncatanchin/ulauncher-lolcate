@@ -2,18 +2,16 @@
     "manifest_version": "2",
     "required_api_version": "3",
     "name": "Ulauncher lolcate extension",
-    "description": "Search files using lolcate",
     "developer_name": "xorly, compilelife, ncatanchin",
     "icon": "images/icon.png",
-    "options": {
-      "query_debounce": 0.5
-    },
+    "instructions": "This extensions need <code>lolcate</code>",
+    "query_debounce": 0.5,
     "preferences": [
       {
         "id": "keyword",
         "type": "keyword",
         "name": "Ulauncher lolcate extension",
-        "description": "keyword to activate this plugin",
+        "description": "Search files using lolcate",
         "default_value": "s"
       },
       {
